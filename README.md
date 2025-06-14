@@ -8,10 +8,14 @@ Meet Amy. She is a friendly young lady, which can discuss everyday news and prov
 
 ## Installation
 
+Clone the repo:
+
 ```bash
 git clone git@github.com:kkomelin/ai-sdk-comparison.git
 cd ai-sdk-comparison
 ```
+
+Install dependencies:
 
 ```bash
 pnpm i
@@ -19,13 +23,17 @@ pnpm i
 
 ## Usage
 
+Run the assistant:
+
 ```bash
 pnpm start:vercel
+# or
 pnpm start:genkit
+# or
 pnpm start:langchain
 ```
 
-Ask Amy something like this:
+Ask something like this to run the temperature tool:
 
 ```
 What's the temperature in New York?
