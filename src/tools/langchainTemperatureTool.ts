@@ -18,7 +18,7 @@ export const langchainTemperatureTool = tool(
     name: 'temperature',
     description: 'Gets current temperature in the given city',
     schema: z.object({
-      city: z.string().describe('The city to get the current weather for'),
+      city: z.string().describe('The city to get the current temperature for'),
     }),
     responseFormat: 'content',
   }

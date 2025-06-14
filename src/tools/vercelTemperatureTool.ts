@@ -6,7 +6,7 @@ import { getRandomAirTemperature } from '../services/weather'
 export const vercelTemperatureTool = tool({
   description: 'Gets current temperature in the given city',
   parameters: z.object({
-    city: z.string().describe('The city to get the current weather for'),
+    city: z.string().describe('The city to get the current temperature for'),
   }),
   execute: async ({ city }) => {
     try {
