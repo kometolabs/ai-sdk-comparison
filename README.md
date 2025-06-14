@@ -2,7 +2,7 @@
 
 In this repo, you can find the same CLI AI assistant implemented with different AI frameworks, such as Vercel AI SDK, Firebase Genkit, Langchain.js.
 
-The same provider and model (Anthropic Claude Sonnet 3.5) is used in all examples for better comparison.
+The same provider and model (Anthropic Claude Sonnet 3.5) is used in all examples just for better comparison.
 
 ## Installation
 

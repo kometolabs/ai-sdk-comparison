@@ -6,12 +6,15 @@
   "scripts": {
     "start:vercel": "tsx src/vercel.ts",
     "start:genkit": "tsx src/genkit.ts",
+    "start:langchain": "tsx src/langchain.ts",
     "format": "prettier --write './src/**/*.{js,ts}'"
   },
   "license": "MIT",
   "packageManager": "pnpm@10.9.0",
   "dependencies": {
     "@ai-sdk/anthropic": "^1.2.12",
+    "@langchain/anthropic": "^0.3.22",
+    "@langchain/core": "^0.3.58",
     "ai": "^4.3.16",
     "chalk": "^5.4.1",
     "dotenv": "^16.5.0",
