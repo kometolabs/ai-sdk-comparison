@@ -4,7 +4,9 @@ import {
   BaseMessage,
   HumanMessage,
   SystemMessage,
+  ToolMessage,
 } from '@langchain/core/messages'
+import { concat } from '@langchain/core/utils/stream'
 import chalk from 'chalk'
 import 'dotenv/config'
 import * as readline from 'node:readline/promises'
@@ -31,8 +33,7 @@ async function main() {
     onFailedAttempt: ({ error }) => {
       process.stdout.write(chalk.red(`\nError: ${(error as Error)?.message}\n`))
     },
-  })
-  ai.bindTools([langchainTemperatureTool])
+  }).bindTools([langchainTemperatureTool])
 
   messages.push(new SystemMessage(AGENT_SYSTEM_PROMPT))
 
@@ -44,20 +45,56 @@ async function main() {
     const stream = await ai.stream(messages)
 
     let fullResponse = ''
-    process.stdout.write(`\n${chalk.cyan(`${AGENT_NAME}: `)}`)
-    for await (const delta of stream) {
-      const content = delta?.content.toString()
 
-      if (!content) {
+    process.stdout.write(`\n${chalk.cyan(`${AGENT_NAME}: `)}`)
+
+    let toolCallsCombined: any = undefined
+
+    for await (const chunk of stream) {
+      toolCallsCombined =
+        toolCallsCombined !== undefined
+          ? concat(toolCallsCombined, chunk)
+          : chunk
+
+      const content = chunk?.content[0]
+      if (!content?.text) {
         continue
       }
 
-      fullResponse += content
-      process.stdout.write(content)
+      fullResponse += content.text
+      process.stdout.write(content.text)
     }
-    process.stdout.write('\n\n')
 
-    messages.push(new AIMessage(fullResponse))
+    if (toolCallsCombined) {
+      const aiMessage = new AIMessage({
+        content: fullResponse,
+        tool_calls: toolCallsCombined.tool_calls,
+      })
+      messages.push(aiMessage)
+
+      try {
+        const toolCallArgs = toolCallsCombined.tool_calls[0].args
+        const toolCallsId = toolCallsCombined.tool_calls[0].id
+
+        const toolResult = await langchainTemperatureTool.invoke(toolCallArgs)
+        process.stdout.write(
+          `\nTemperature in ${toolCallArgs.city}: ${toolResult}\n`
+        )
+
+        messages.push(
+          new ToolMessage({
+            content: toolResult,
+            tool_call_id: toolCallsId,
+          })
+        )
+      } catch (error) {
+        console.error(chalk.red('Tool error:'), error)
+      }
+    } else {
+      messages.push(new AIMessage(fullResponse))
+    }
+
+    process.stdout.write('\n\n')
   }
 }
 

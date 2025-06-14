@@ -4,7 +4,6 @@ import { getRandomAirTemperature } from '../services/weather'
 
 export const langchainTemperatureTool = tool(
   async ({ city }) => {
-    console.log('city', city)
     try {
       // const temperature = await getAirTemperature(city)
       const temperature = await getRandomAirTemperature(city)
