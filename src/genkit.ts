@@ -3,6 +3,7 @@ import 'dotenv/config'
 import { genkit, MessageData } from 'genkit'
 import { anthropic, claude35Sonnet } from 'genkitx-anthropic'
 import * as readline from 'node:readline/promises'
+import { AGENT_NAME, AGENT_SYSTEM_PROMPT } from './config/main'
 import { createGenkitTemperatureTool } from './tools/genkitTemperatureTool'
 
 const terminal = readline.createInterface({
@@ -11,8 +12,6 @@ const terminal = readline.createInterface({
 })
 
 const messages: MessageData[] = []
-
-const AGENT_NAME = 'Amy'
 
 async function main() {
   process.stdout.write(
@@ -24,6 +23,8 @@ async function main() {
     model: claude35Sonnet,
   })
 
+  const genkitTemperatureTool = createGenkitTemperatureTool(ai)
+
   while (true) {
     const userInput = await terminal.question(chalk.green('You: '))
 
@@ -31,9 +32,9 @@ async function main() {
 
     const result = ai.generateStream({
       messages,
-      tools: [createGenkitTemperatureTool(ai)],
+      tools: [genkitTemperatureTool],
       maxTurns: 5,
-      system: `You are ${AGENT_NAME}, a friendly young lady, which can discuss everyday news and provide weather forecast.`,
+      system: AGENT_SYSTEM_PROMPT,
       onError: ({ error }) => {
         process.stdout.write(
           chalk.red(`\nError: ${(error as Error)?.message}\n`)

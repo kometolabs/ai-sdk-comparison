@@ -4,8 +4,6 @@ In this repo, you can find the same CLI AI assistant implemented with different 
 
 The same provider and model (Anthropic Claude Sonnet 3.5) is used in all examples for better comparison.
 
-Meet Amy. She is a friendly young lady, which can discuss everyday news and provide weather forecast (through a Tool call).
-
 ## Installation
 
 Clone the repo:

@@ -3,6 +3,7 @@ import { CoreMessage, streamText } from 'ai'
 import chalk from 'chalk'
 import 'dotenv/config'
 import * as readline from 'node:readline/promises'
+import { AGENT_NAME, AGENT_SYSTEM_PROMPT } from './config/main'
 import { vercelTemperatureTool } from './tools/vercelTemperatureTool'
 
 const terminal = readline.createInterface({
@@ -11,8 +12,6 @@ const terminal = readline.createInterface({
 })
 
 const messages: CoreMessage[] = []
-
-const AGENT_NAME = 'Amy'
 
 async function main() {
   process.stdout.write(
@@ -29,7 +28,7 @@ async function main() {
       messages,
       tools: { temperature: vercelTemperatureTool },
       maxSteps: 5,
-      system: `You are ${AGENT_NAME}, a friendly young lady, which can discuss everyday news and provide weather forecast.`,
+      system: AGENT_SYSTEM_PROMPT,
       onError: ({ error }) => {
         process.stdout.write(
           chalk.red(`\nError: ${(error as Error)?.message}\n`)
