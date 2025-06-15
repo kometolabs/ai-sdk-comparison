@@ -65,7 +65,7 @@ async function main() {
       process.stdout.write(content.text)
     }
 
-    if (toolCallsCombined) {
+    if (toolCallsCombined && toolCallsCombined.tool_calls.length > 0) {
       const aiMessage = new AIMessage({
         content: fullResponse,
         tool_calls: toolCallsCombined.tool_calls,
