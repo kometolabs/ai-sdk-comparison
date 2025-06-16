@@ -13,7 +13,7 @@ const terminal = readline.createInterface({
 const messages: MessageData[] = []
 
 async function main() {
-  process.stdout.write(`\n${AGENT_NAME} is online and ready to talk...\n\n`)
+  terminal.write(`\n${AGENT_NAME} is online and ready to talk...\n\n`)
 
   const ai = genkit({
     plugins: [anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })],
@@ -33,12 +33,12 @@ async function main() {
       maxTurns: 5,
       system: AGENT_SYSTEM_PROMPT,
       onError: ({ error }) => {
-        process.stdout.write(`\nError: ${(error as Error)?.message}\n`)
+        terminal.write(`\nError: ${(error as Error)?.message}\n`)
       },
     })
 
     let fullResponse = ''
-    process.stdout.write(`\n${AGENT_NAME}: `)
+    terminal.write(`\n${AGENT_NAME}: `)
     for await (const delta of result?.stream ?? []) {
       const content = delta.content[0]
 
@@ -47,14 +47,14 @@ async function main() {
       }
 
       fullResponse += content.text
-      process.stdout.write(content.text)
+      terminal.write(content.text)
     }
-    process.stdout.write('\n\n')
+    terminal.write('\n\n')
 
     messages.push({ role: 'model', content: [{ text: fullResponse }] })
   }
 }
 
 main().catch((error) => {
-  process.stdout.write('🚨 Fatal error:', error)
+  terminal.write('🚨 Fatal error:', error)
 })

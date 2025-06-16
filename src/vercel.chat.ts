@@ -13,7 +13,7 @@ const terminal = readline.createInterface({
 const messages: CoreMessage[] = []
 
 async function main() {
-  process.stdout.write(`\n${AGENT_NAME} is online and ready to talk...\n\n`)
+  terminal.write(`\n${AGENT_NAME} is online and ready to talk...\n\n`)
 
   while (true) {
     const userInput = await terminal.question('You: ')
@@ -27,22 +27,22 @@ async function main() {
       maxSteps: 5,
       system: AGENT_SYSTEM_PROMPT,
       onError: ({ error }) => {
-        process.stdout.write(`\nError: ${(error as Error)?.message}\n`)
+        terminal.write(`\nError: ${(error as Error)?.message}\n`)
       },
     })
 
     let fullResponse = ''
-    process.stdout.write(`\n${AGENT_NAME}: `)
+    terminal.write(`\n${AGENT_NAME}: `)
     for await (const delta of result?.textStream ?? []) {
       fullResponse += delta
-      process.stdout.write(delta)
+      terminal.write(delta)
     }
-    process.stdout.write('\n\n')
+    terminal.write('\n\n')
 
     messages.push({ role: 'assistant', content: fullResponse })
   }
 }
 
 main().catch((error) => {
-  process.stdout.write('🚨 Fatal error:', error)
+  terminal.write('🚨 Fatal error:', error)
 })

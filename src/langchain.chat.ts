@@ -20,7 +20,7 @@ const terminal = readline.createInterface({
 const messages: BaseMessage[] = []
 
 async function main() {
-  process.stdout.write(`\n${AGENT_NAME} is online and ready to talk...\n\n`)
+  terminal.write(`\n${AGENT_NAME} is online and ready to talk...\n\n`)
 
   const ai = new ChatAnthropic({
     model: 'claude-3-5-sonnet-20241022',
@@ -28,7 +28,7 @@ async function main() {
     maxRetries: 5,
     streaming: true,
     onFailedAttempt: ({ error }) => {
-      process.stdout.write(`\nError: ${(error as Error)?.message}\n`)
+      terminal.write(`\nError: ${(error as Error)?.message}\n`)
     },
   }).bindTools([langchainTemperatureTool])
 
@@ -43,7 +43,7 @@ async function main() {
 
     let fullResponse = ''
 
-    process.stdout.write(`\n${AGENT_NAME}: `)
+    terminal.write(`\n${AGENT_NAME}: `)
 
     let toolCallsCombined: any = undefined
 
@@ -59,7 +59,7 @@ async function main() {
       }
 
       fullResponse += content.text
-      process.stdout.write(content.text)
+      terminal.write(content.text)
     }
 
     if (toolCallsCombined && toolCallsCombined.tool_calls.length > 0) {
@@ -74,9 +74,7 @@ async function main() {
         const toolCallsId = toolCallsCombined.tool_calls[0].id
 
         const toolResult = await langchainTemperatureTool.invoke(toolCallArgs)
-        process.stdout.write(
-          `\nTemperature in ${toolCallArgs.city}: ${toolResult}\n`
-        )
+        terminal.write(`\nTemperature in ${toolCallArgs.city}: ${toolResult}\n`)
 
         messages.push(
           new ToolMessage({
@@ -91,10 +89,10 @@ async function main() {
       messages.push(new AIMessage(fullResponse))
     }
 
-    process.stdout.write('\n\n')
+    terminal.write('\n\n')
   }
 }
 
 main().catch((error) => {
-  process.stdout.write('🚨 Fatal error:', error)
+  terminal.write('🚨 Fatal error:', error)
 })
