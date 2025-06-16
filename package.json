@@ -1,14 +1,17 @@
 {
   "name": "ai-sdks-experiments",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "AI SDKs experiments",
   "scripts": {
     "start:vercel:simple": "tsx src/vercel.simple.ts",
-    "start:vercel:tool": "tsx src/vercel.simple.tool.ts",
+    "start:vercel:tool": "tsx src/vercel.tool.ts",
     "start:vercel:chat": "tsx src/vercel.chat.ts",
-    "start:genkit": "tsx src/genkit.ts",
-    "start:langchain": "tsx src/langchain.ts",
+    "start:genkit:simple": "tsx src/genkit.simple.ts",
+    "start:genkit:tool": "tsx src/genkit.tool.ts",
+    "start:genkit:chat": "tsx src/genkit.chat.ts",
+    "start:langchain:simple": "tsx src/langchain.simple.ts",
+    "start:langchain:tool": "tsx src/langchain.tool.ts",
+    "start:langchain:chat": "tsx src/langchain.chat.ts",
     "format": "prettier --write './src/**/*.{js,ts}'"
   },
   "license": "MIT",

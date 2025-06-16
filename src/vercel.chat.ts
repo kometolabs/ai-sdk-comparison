@@ -20,7 +20,7 @@ async function main() {
 
     messages.push({ role: 'user', content: userInput })
 
-    const result = streamText({
+    const result = await streamText({
       model: anthropic('claude-3-5-sonnet-latest'),
       messages,
       tools: { temperature: vercelTemperatureTool },
