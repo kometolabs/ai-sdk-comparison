@@ -4,19 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:vercel": "tsx src/vercel.ts",
+    "start:vercel:simple": "tsx src/vercel.simple.ts",
+    "start:vercel:tool": "tsx src/vercel.simple.tool.ts",
+    "start:vercel:chat": "tsx src/vercel.chat.ts",
     "start:genkit": "tsx src/genkit.ts",
     "start:langchain": "tsx src/langchain.ts",
     "format": "prettier --write './src/**/*.{js,ts}'"
   },
   "license": "MIT",
-  "packageManager": "pnpm@10.9.0",
+  "packageManager": "pnpm@10.12.1",
   "dependencies": {
     "@ai-sdk/anthropic": "^1.2.12",
     "@langchain/anthropic": "^0.3.22",
     "@langchain/core": "^0.3.58",
     "ai": "^4.3.16",
-    "chalk": "^5.4.1",
     "dotenv": "^16.5.0",
     "genkit": "^1.12.0",
     "genkitx-anthropic": "^0.22.0",

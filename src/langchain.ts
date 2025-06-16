@@ -7,7 +7,6 @@ import {
   ToolMessage,
 } from '@langchain/core/messages'
 import { concat } from '@langchain/core/utils/stream'
-import chalk from 'chalk'
 import 'dotenv/config'
 import * as readline from 'node:readline/promises'
 import { AGENT_NAME, AGENT_SYSTEM_PROMPT } from './config/main'
@@ -21,9 +20,7 @@ const terminal = readline.createInterface({
 const messages: BaseMessage[] = []
 
 async function main() {
-  process.stdout.write(
-    chalk.cyan(`\n${AGENT_NAME} is online and ready to talk...\n\n`)
-  )
+  process.stdout.write(`\n${AGENT_NAME} is online and ready to talk...\n\n`)
 
   const ai = new ChatAnthropic({
     model: 'claude-3-5-sonnet-20241022',
@@ -31,14 +28,14 @@ async function main() {
     maxRetries: 5,
     streaming: true,
     onFailedAttempt: ({ error }) => {
-      process.stdout.write(chalk.red(`\nError: ${(error as Error)?.message}\n`))
+      process.stdout.write(`\nError: ${(error as Error)?.message}\n`)
     },
   }).bindTools([langchainTemperatureTool])
 
   messages.push(new SystemMessage(AGENT_SYSTEM_PROMPT))
 
   while (true) {
-    const userInput = await terminal.question(chalk.green('You: '))
+    const userInput = await terminal.question('You: ')
 
     messages.push(new HumanMessage(userInput))
 
@@ -46,7 +43,7 @@ async function main() {
 
     let fullResponse = ''
 
-    process.stdout.write(`\n${chalk.cyan(`${AGENT_NAME}: `)}`)
+    process.stdout.write(`\n${AGENT_NAME}: `)
 
     let toolCallsCombined: any = undefined
 
@@ -88,7 +85,7 @@ async function main() {
           })
         )
       } catch (error) {
-        console.error(chalk.red('Tool error:'), error)
+        console.error('Tool error:', error)
       }
     } else {
       messages.push(new AIMessage(fullResponse))
@@ -99,5 +96,5 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error(chalk.red('🚨 Fatal error:'), error)
+  process.stdout.write('🚨 Fatal error:', error)
 })
