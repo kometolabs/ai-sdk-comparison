@@ -27,7 +27,9 @@ async function main() {
 
     messages.push({ role: 'user', content: [{ text: userInput }] })
 
-    const result = ai.generateStream({
+    terminal.write(`\n${AGENT_NAME}: `)
+
+    const result = await ai.generate({
       messages,
       tools: [genkitTemperatureTool],
       maxTurns: 5,
@@ -35,23 +37,17 @@ async function main() {
       onError: ({ error }) => {
         terminal.write(`\nError: ${(error as Error)?.message}\n`)
       },
+      temperature: 0,
     })
 
-    let fullResponse = ''
-    terminal.write(`\n${AGENT_NAME}: `)
-    for await (const delta of result?.stream ?? []) {
-      const content = delta.content[0]
-
-      if (!content?.text) {
-        continue
-      }
-
-      fullResponse += content.text
-      terminal.write(content.text)
+    const content = result.message?.content[0]
+    if (!content?.text) {
+      continue
     }
-    terminal.write('\n\n')
 
-    messages.push({ role: 'model', content: [{ text: fullResponse }] })
+    terminal.write(`${content.text}\n\n`)
+
+    messages.push({ role: 'model', content: [{ text: content.text }] })
   }
 }
 

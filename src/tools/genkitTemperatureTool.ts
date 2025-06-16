@@ -8,7 +8,9 @@ export const createGenkitTemperatureTool = (ai: Genkit) => {
       name: 'temperature',
       description: 'Gets current temperature in the given city',
       inputSchema: z.object({
-        city: z.string().describe('The city to get the current temperature for'),
+        city: z
+          .string()
+          .describe('The city to get the current temperature for'),
       }),
       outputSchema: z.string(),
     },

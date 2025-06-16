@@ -1,12 +1,6 @@
 import { ChatAnthropic } from '@langchain/anthropic'
-import {
-  AIMessage,
-  BaseMessage,
-  HumanMessage,
-  SystemMessage,
-  ToolMessage,
-} from '@langchain/core/messages'
-import { concat } from '@langchain/core/utils/stream'
+import { AIMessage, BaseMessage, HumanMessage } from '@langchain/core/messages'
+import { createReactAgent } from '@langchain/langgraph/prebuilt'
 import 'dotenv/config'
 import * as readline from 'node:readline/promises'
 import { AGENT_NAME, AGENT_SYSTEM_PROMPT } from './config/main'
@@ -17,78 +11,53 @@ const terminal = readline.createInterface({
   output: process.stdout,
 })
 
-const messages: BaseMessage[] = []
-
 async function main() {
   terminal.write(`\n${AGENT_NAME} is online and ready to talk...\n\n`)
 
   const ai = new ChatAnthropic({
     model: 'claude-3-5-sonnet-20241022',
-    maxRetries: 5,
-    streaming: true,
+    temperature: 0,
     onFailedAttempt: ({ error }) => {
       terminal.write(`\nError: ${(error as Error)?.message}\n`)
     },
-  }).bindTools([langchainTemperatureTool])
+  })
 
-  messages.push(new SystemMessage(AGENT_SYSTEM_PROMPT))
+  const agent = createReactAgent({
+    llm: ai,
+    tools: [langchainTemperatureTool],
+    prompt: AGENT_SYSTEM_PROMPT,
+  })
+
+  const messages: BaseMessage[] = []
 
   while (true) {
     const userInput = await terminal.question('You: ')
 
     messages.push(new HumanMessage(userInput))
 
-    const stream = await ai.stream(messages)
-
-    let fullResponse = ''
-
     terminal.write(`\n${AGENT_NAME}: `)
 
-    let toolCallsCombined: any = undefined
+    const result = await agent.invoke({
+      messages,
+    })
 
-    for await (const chunk of stream) {
-      toolCallsCombined =
-        toolCallsCombined !== undefined
-          ? concat(toolCallsCombined, chunk)
-          : chunk
-
-      const content = chunk?.content[0]
-      if (!content?.text) {
+    for (let i = messages.length; i < result.messages.length; i++) {
+      if (
+        result.messages[i].getType() === 'tool' ||
+        typeof result.messages[i].content !== 'string'
+      ) {
         continue
       }
 
-      fullResponse += content.text
-      terminal.write(content.text)
-    }
-
-    if (toolCallsCombined && toolCallsCombined.tool_calls.length > 0) {
-      const aiMessage = new AIMessage({
-        content: fullResponse,
-        tool_calls: toolCallsCombined.tool_calls,
-      })
-      messages.push(aiMessage)
-
-      try {
-        const toolCallArgs = toolCallsCombined.tool_calls[0].args
-        const toolCallsId = toolCallsCombined.tool_calls[0].id
-
-        const toolResult = await langchainTemperatureTool.invoke(toolCallArgs)
-        terminal.write(`\nTemperature in ${toolCallArgs.city}: ${toolResult}\n`)
-
-        messages.push(
-          new ToolMessage({
-            content: toolResult,
-            tool_call_id: toolCallsId,
-          })
-        )
-      } catch (error) {
-        console.error('Tool error:', error)
+      const content = result.messages[i].content
+      if (!content) {
+        continue
       }
-    } else {
-      messages.push(new AIMessage(fullResponse))
-    }
 
-    terminal.write('\n\n')
+      messages.push(new AIMessage(content.toString()))
+
+      terminal.write(`${content.toString()}\n\n`)
+    }
   }
 }
 
