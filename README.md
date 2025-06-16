@@ -24,11 +24,11 @@ pnpm i
 Run the assistant:
 
 ```bash
-pnpm start:vercel
+pnpm vercel:simple
 # or
-pnpm start:genkit
+pnpm genkit:simple
 # or
-pnpm start:langchain
+pnpm langchain:simple
 ```
 
 Ask something like this to run the temperature tool:
