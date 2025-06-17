@@ -2,7 +2,7 @@
 
 Here you can find code examples implemented with different AI frameworks, such as Vercel AI SDK, Firebase Genkit and Langchain.
 
-The main aim is to compare the frameworks and decide which one use for next projects.
+The main aim is to compare the frameworks and decide which one to choose for next projects.
 
 All of the examples use the same model (Anthropic Claude Sonnet 3.5) for cleaner comparison.
 
