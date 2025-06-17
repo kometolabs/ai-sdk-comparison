@@ -1,8 +1,10 @@
 # AI SDK Comparison
 
-In this repo, you can find the same CLI AI assistant implemented with different AI frameworks, such as Vercel AI SDK, Firebase Genkit, Langchain.js.
+Here you can find code examples implemented with different AI frameworks, such as Vercel AI SDK, Firebase Genkit and Langchain.
 
-The same provider and model (Anthropic Claude Sonnet 3.5) is used in all examples just for better comparison.
+The main aim is to compare the frameworks and decide which one use for next projects.
+
+All of the examples use the same model (Anthropic Claude Sonnet 3.5) for cleaner comparison.
 
 ## Installation
 
@@ -21,14 +23,37 @@ pnpm i
 
 ## Usage
 
-Run the assistant:
+### Simple non-interactive example without tools plugged:
 
 ```bash
+# src/vercel.simple.ts
 pnpm vercel:simple
-# or
+# src/genkit.simple.ts
 pnpm genkit:simple
-# or
+# src/langchain.simple.ts
 pnpm langchain:simple
+```
+
+### Simple non-interactive example with a Temperature tool plugged:
+
+```bash
+# src/vercel.tool.ts
+pnpm vercel:tool
+# src/genkit.tool.ts
+pnpm genkit:tool
+# src/langchain.tool.ts
+pnpm langchain:tool
+```
+
+### Interactive Chat example with a Temperature tool plugged:
+
+```bash
+# src/vercel.chat.ts
+pnpm vercel:chat
+# src/genkit.chat.ts
+pnpm genkit:chat
+# src/langchain.chat.ts
+pnpm langchain:chat
 ```
 
 Ask something like this to run the temperature tool:
@@ -36,3 +61,7 @@ Ask something like this to run the temperature tool:
 ```
 What's the temperature in New York?
 ```
+
+## Contribute
+
+If you see ways to improve the examples, e.g. adapt them to the latest framework update, shoot a PR.
