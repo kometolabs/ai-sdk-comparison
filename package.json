@@ -19,16 +19,16 @@
   "dependencies": {
     "@ai-sdk/anthropic": "^1.2.12",
     "@langchain/anthropic": "^0.3.22",
-    "@langchain/core": "^0.3.58",
-    "@langchain/langgraph": "^0.3.3",
+    "@langchain/core": "^0.3.59",
+    "@langchain/langgraph": "^0.3.4",
     "ai": "^4.3.16",
     "dotenv": "^16.5.0",
     "genkit": "^1.12.0",
     "genkitx-anthropic": "^0.22.0",
-    "zod": "^3.25.64"
+    "zod": "^3.25.67"
   },
   "devDependencies": {
-    "@types/node": "^24.0.1",
+    "@types/node": "^24.0.3",
     "prettier": "^3.5.3",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3"
