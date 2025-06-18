@@ -1,6 +1,5 @@
 import { Genkit } from 'genkit'
 import { z } from 'zod'
-import { getRandomAirTemperature } from '../services/weather'
 
 export const createGenkitTemperatureTool = (ai: Genkit) => {
   return ai.defineTool(
@@ -16,9 +15,9 @@ export const createGenkitTemperatureTool = (ai: Genkit) => {
     },
     async ({ city }) => {
       try {
-        // const temperature = await getAirTemperature(city)
-        const temperature = await getRandomAirTemperature(city)
-
+        const min = -10,
+          max = 40
+        const temperature = (Math.random() * (max - min) + min).toFixed(0)
         return `${temperature}°C`
       } catch (error: any) {
         return error.message

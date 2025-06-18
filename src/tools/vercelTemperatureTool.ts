@@ -1,7 +1,5 @@
 import { tool } from 'ai'
 import { z } from 'zod'
-import { getRandomAirTemperature } from '../services/weather'
-// import { getAirTemperature } from '../services/weather'
 
 export const vercelTemperatureTool = tool({
   description: 'Gets current temperature in the given city',
@@ -10,12 +8,10 @@ export const vercelTemperatureTool = tool({
   }),
   execute: async ({ city }) => {
     try {
-      // const temperature = await getAirTemperature(city)
-      const temperature = await getRandomAirTemperature(city)
-
-      return {
-        temperature: `${temperature}°C`,
-      }
+      const min = -10,
+        max = 40
+      const temperature = (Math.random() * (max - min) + min).toFixed(0)
+      return `${temperature}°C`
     } catch (error: any) {
       return { error: error.message }
     }
