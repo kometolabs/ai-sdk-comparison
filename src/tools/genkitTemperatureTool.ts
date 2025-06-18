@@ -1,5 +1,4 @@
-import { Genkit } from 'genkit'
-import { z } from 'zod'
+import { Genkit, z } from 'genkit'
 
 export const createGenkitTemperatureTool = (ai: Genkit) => {
   return ai.defineTool(

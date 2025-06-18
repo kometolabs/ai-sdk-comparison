@@ -34,7 +34,7 @@ async function main() {
       tools: [genkitTemperatureTool],
       system: AGENT_SYSTEM_PROMPT,
       onError: ({ error }) => {
-        terminal.write(`\nError: ${(error as Error)?.message}\n`)
+        terminal.write(`\nError: ${error?.message}\n`)
       },
       maxTurns: 2,
       temperature: 0,
