@@ -52,5 +52,5 @@ async function main() {
 }
 
 main().catch((error) => {
-  terminal.write('🚨 Fatal error:', error)
+  console.error('🚨 Fatal error:', error)
 })
