@@ -28,7 +28,6 @@ async function main() {
       tools: { temperature: vercelTemperatureTool },
       maxSteps: 5,
       system: AGENT_SYSTEM_PROMPT,
-      temperature: 0,
     })
 
     terminal.write(`${result.text}\n\n`)

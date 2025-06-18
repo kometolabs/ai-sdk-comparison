@@ -37,7 +37,6 @@ async function main() {
       onError: ({ error }) => {
         terminal.write(`\nError: ${(error as Error)?.message}\n`)
       },
-      temperature: 0,
     })
 
     const content = result.message?.content[0]

@@ -16,7 +16,6 @@ async function main() {
 
   const ai = new ChatAnthropic({
     model: 'claude-3-5-sonnet-20241022',
-    temperature: 0,
     onFailedAttempt: ({ error }) => {
       terminal.write(`\nError: ${(error as Error)?.message}\n`)
     },
