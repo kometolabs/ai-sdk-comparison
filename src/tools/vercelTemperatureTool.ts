@@ -8,9 +8,10 @@ export const vercelTemperatureTool = tool({
   }),
   execute: async ({ city }) => {
     try {
-      const min = -10,
-        max = 40
+      const min = -10
+      const max = 40
       const temperature = (Math.random() * (max - min) + min).toFixed(0)
+
       return `${temperature}°C`
     } catch (error: any) {
       return { error: error.message }
