@@ -7,7 +7,7 @@ import { langchainTemperatureTool } from './tools/langchainTemperatureTool'
 
 async function main() {
   const ai = new ChatAnthropic({
-    model: 'claude-3-5-sonnet-20241022',
+    model: 'claude-3-5-sonnet-latest',
     temperature: 0,
   })
 
