@@ -16,6 +16,8 @@ async function main() {
     tools: [genkitTemperatureTool],
     system: AGENT_SYSTEM_PROMPT,
     prompt: "What's the temperature in New York?",
+    maxTurns: 2,
+    temperature: 0,
   })
 
   console.log(result.text)

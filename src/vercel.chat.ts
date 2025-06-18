@@ -25,9 +25,10 @@ async function main() {
     const result = await generateText({
       model: anthropic('claude-3-5-sonnet-latest'),
       messages,
-      tools: { temperature: vercelTemperatureTool },
-      maxSteps: 5,
       system: AGENT_SYSTEM_PROMPT,
+      tools: { temperature: vercelTemperatureTool },
+      maxSteps: 2,
+      temperature: 0,
     })
 
     terminal.write(`${result.text}\n\n`)

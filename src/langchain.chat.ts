@@ -19,6 +19,7 @@ async function main() {
     onFailedAttempt: ({ error }) => {
       terminal.write(`\nError: ${(error as Error)?.message}\n`)
     },
+    temperature: 0,
   })
 
   const agent = createReactAgent({

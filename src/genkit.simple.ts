@@ -12,6 +12,8 @@ async function main() {
   const result = await ai.generate({
     system: AGENT_SYSTEM_PROMPT,
     prompt: "What's your name?",
+    maxTurns: 1,
+    temperature: 0,
   })
 
   console.log(result.text)
