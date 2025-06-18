@@ -13,6 +13,7 @@ async function main() {
     maxTurns: 1,
     system: AGENT_SYSTEM_PROMPT,
     prompt: "What's your name?",
+    temperature: 0,
   })
 
   console.log(result.text)
