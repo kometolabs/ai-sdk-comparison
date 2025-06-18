@@ -32,7 +32,6 @@ async function main() {
     const result = await ai.generate({
       messages,
       tools: [genkitTemperatureTool],
-      maxTurns: 5,
       system: AGENT_SYSTEM_PROMPT,
       onError: ({ error }) => {
         terminal.write(`\nError: ${(error as Error)?.message}\n`)

@@ -14,7 +14,6 @@ async function main() {
 
   const result = await ai.generate({
     tools: [genkitTemperatureTool],
-    maxTurns: 1,
     system: AGENT_SYSTEM_PROMPT,
     prompt: "What's the temperature in New York?",
   })

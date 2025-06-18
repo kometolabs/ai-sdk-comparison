@@ -6,7 +6,6 @@ import { AGENT_SYSTEM_PROMPT } from './config/main'
 async function main() {
   const result = await generateText({
     model: anthropic('claude-3-5-sonnet-latest'),
-    maxSteps: 1,
     system: AGENT_SYSTEM_PROMPT,
     prompt: "What's your name?",
   })

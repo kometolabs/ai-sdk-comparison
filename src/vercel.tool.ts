@@ -7,7 +7,6 @@ import { vercelTemperatureTool } from './tools/vercelTemperatureTool'
 async function main() {
   const result = await generateText({
     model: anthropic('claude-3-5-sonnet-latest'),
-    // We're plugging in the temperature tool here.
     tools: { temperature: vercelTemperatureTool },
     maxSteps: 5,
     system: AGENT_SYSTEM_PROMPT,

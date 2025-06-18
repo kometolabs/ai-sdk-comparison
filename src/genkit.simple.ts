@@ -10,7 +10,6 @@ async function main() {
   })
 
   const result = await ai.generate({
-    maxTurns: 1,
     system: AGENT_SYSTEM_PROMPT,
     prompt: "What's your name?",
   })
