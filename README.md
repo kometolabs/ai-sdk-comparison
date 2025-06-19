@@ -6,7 +6,7 @@ The main aim is to compare the frameworks and decide which one to choose for nex
 
 All of the examples use the same model (Anthropic Claude Sonnet 3.5) for cleaner comparison.
 
-[@kkomelin](https://github.com/kkomelin) shared observations from using the frameworks [on his blog](https://komelin.com/blog/ai-framework-comparison)
+Check out [@kkomelin](https://github.com/kkomelin)'s [companion post on his blog](https://komelin.com/blog/ai-framework-comparison).
 
 ## Installation
 
