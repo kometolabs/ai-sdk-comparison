@@ -1,6 +1,6 @@
 # AI SDK Comparison
 
-Here you can find code examples implemented with different AI frameworks, such as Vercel AI SDK, Firebase Genkit and Langchain.
+Here you can find code examples implemented with different AI frameworks, such as [Vercel AI SDK](https://ai-sdk.dev/), [Firebase Genkit](https://firebase.google.com/products/genkit) and [Langchain.js](https://js.langchain.com).
 
 The main aim is to compare the frameworks and decide which one to choose for next projects.
 
@@ -64,4 +64,4 @@ What's the temperature in New York?
 
 ## Contribute
 
-If you see ways to improve the examples, e.g. adapt them to the latest framework update, shoot a PR.
+If you see ways to improve the examples, e.g. adapt them to the latest framework updates, shoot a PR.
