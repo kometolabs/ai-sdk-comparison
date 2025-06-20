@@ -13,7 +13,7 @@ Check out [@kkomelin](https://github.com/kkomelin)'s [companion post on his blog
 Clone the repo:
 
 ```bash
-git clone git@github.com:kkomelin/ai-sdk-comparison.git
+git clone git@github.com:kometolabs/ai-sdk-comparison.git
 cd ai-sdk-comparison
 ```
 
