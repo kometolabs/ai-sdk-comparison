@@ -15,7 +15,7 @@ async function main() {
   terminal.write(`\n${AGENT_NAME} is online and ready to talk...\n\n`)
 
   const ai = new ChatAnthropic({
-    model: 'claude-3-5-sonnet-20241022',
+    model: 'claude-3-5-sonnet-latest',
     onFailedAttempt: ({ error }) => {
       terminal.write(`\nError: ${error?.message}\n`)
     },
