@@ -1,5 +1,5 @@
 import { anthropic } from '@ai-sdk/anthropic'
-import { ModelMessage, generateText, stepCountIs } from 'ai';
+import { ModelMessage, generateText, stepCountIs } from 'ai'
 import 'dotenv/config'
 import * as readline from 'node:readline/promises'
 import { AGENT_NAME, AGENT_SYSTEM_PROMPT } from './config/main'
@@ -28,7 +28,7 @@ async function main() {
       system: AGENT_SYSTEM_PROMPT,
       tools: { temperature: vercelTemperatureTool },
       stopWhen: stepCountIs(2),
-      temperature: 0
+      temperature: 0,
     })
 
     terminal.write(`${result.text}\n\n`)

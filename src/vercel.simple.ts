@@ -1,5 +1,5 @@
 import { anthropic } from '@ai-sdk/anthropic'
-import { generateText, stepCountIs } from 'ai';
+import { generateText, stepCountIs } from 'ai'
 import 'dotenv/config'
 import { AGENT_SYSTEM_PROMPT } from './config/main'
 
@@ -9,7 +9,7 @@ async function main() {
     system: AGENT_SYSTEM_PROMPT,
     prompt: "What's your name?",
     stopWhen: stepCountIs(1),
-    temperature: 0
+    temperature: 0,
   })
 
   console.log(result.text)

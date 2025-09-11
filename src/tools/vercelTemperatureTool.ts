@@ -1,5 +1,5 @@
 import { tool } from 'ai'
-import { z } from 'zod/v4'
+import { z } from 'zod'
 
 export const vercelTemperatureTool = tool({
   description: 'Gets current temperature in the given city',
