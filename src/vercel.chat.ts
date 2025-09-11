@@ -1,5 +1,5 @@
 import { anthropic } from '@ai-sdk/anthropic'
-import { CoreMessage, generateText } from 'ai'
+import { ModelMessage, generateText, stepCountIs } from 'ai';
 import 'dotenv/config'
 import * as readline from 'node:readline/promises'
 import { AGENT_NAME, AGENT_SYSTEM_PROMPT } from './config/main'
@@ -10,7 +10,7 @@ const terminal = readline.createInterface({
   output: process.stdout,
 })
 
-const messages: CoreMessage[] = []
+const messages: ModelMessage[] = []
 
 async function main() {
   terminal.write(`\n${AGENT_NAME} is online and ready to talk...\n\n`)
@@ -27,8 +27,8 @@ async function main() {
       messages,
       system: AGENT_SYSTEM_PROMPT,
       tools: { temperature: vercelTemperatureTool },
-      maxSteps: 2,
-      temperature: 0,
+      stopWhen: stepCountIs(2),
+      temperature: 0
     })
 
     terminal.write(`${result.text}\n\n`)

@@ -33,11 +33,10 @@ async function main() {
       messages,
       tools: [genkitTemperatureTool],
       system: AGENT_SYSTEM_PROMPT,
-      onError: ({ error }) => {
-        terminal.write(`\nError: ${error?.message}\n`)
-      },
       maxTurns: 2,
-      temperature: 0,
+      config: {
+        temperature: 0,
+      },
     })
 
     const content = result.message?.content[0]

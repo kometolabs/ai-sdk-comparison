@@ -17,7 +17,9 @@ async function main() {
     system: AGENT_SYSTEM_PROMPT,
     prompt: "What's the temperature in New York?",
     maxTurns: 2,
-    temperature: 0,
+    config: {
+      temperature: 0,
+    },
   })
 
   console.log(result.text)

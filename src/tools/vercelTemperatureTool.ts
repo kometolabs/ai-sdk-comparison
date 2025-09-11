@@ -1,9 +1,9 @@
 import { tool } from 'ai'
-import { z } from 'zod'
+import { z } from 'zod/v4'
 
 export const vercelTemperatureTool = tool({
   description: 'Gets current temperature in the given city',
-  parameters: z.object({
+  inputSchema: z.object({
     city: z.string().describe('The city to get the current temperature for'),
   }),
   execute: async ({ city }) => {

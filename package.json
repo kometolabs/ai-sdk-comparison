@@ -17,20 +17,20 @@
   "license": "MIT",
   "packageManager": "pnpm@10.12.1",
   "dependencies": {
-    "@ai-sdk/anthropic": "^1.2.12",
-    "@langchain/anthropic": "^0.3.22",
-    "@langchain/core": "^0.3.59",
-    "@langchain/langgraph": "^0.3.4",
-    "ai": "^4.3.16",
-    "dotenv": "^16.5.0",
-    "genkit": "^1.12.0",
-    "genkitx-anthropic": "^0.22.0",
-    "zod": "^3.25.67"
+    "@ai-sdk/anthropic": "^2.0.15",
+    "@langchain/anthropic": "^0.3.27",
+    "@langchain/core": "^0.3.75",
+    "@langchain/langgraph": "^0.4.9",
+    "ai": "^5.0.40",
+    "dotenv": "^17.2.2",
+    "genkit": "^1.19.2",
+    "genkitx-anthropic": "^0.25.0",
+    "zod": "^4.1.7"
   },
   "devDependencies": {
-    "@types/node": "^24.0.3",
-    "prettier": "^3.5.3",
-    "tsx": "^4.20.3",
-    "typescript": "^5.8.3"
+    "@types/node": "^24.3.1",
+    "prettier": "^3.6.2",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
   }
 }
