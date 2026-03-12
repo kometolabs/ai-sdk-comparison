@@ -6,7 +6,7 @@ import { vercelTemperatureTool } from './tools/vercelTemperatureTool'
 
 async function main() {
   const result = await generateText({
-    model: anthropic('claude-3-5-sonnet-latest'),
+    model: anthropic(process.env.ANTHROPIC_MODEL!),
     system: AGENT_SYSTEM_PROMPT,
     prompt: "What's the temperature in New York?",
     tools: { temperature: vercelTemperatureTool },

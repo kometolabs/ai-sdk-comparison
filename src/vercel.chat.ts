@@ -23,7 +23,7 @@ async function main() {
     terminal.write(`\n${AGENT_NAME}: `)
 
     const result = await generateText({
-      model: anthropic('claude-3-5-sonnet-latest'),
+      model: anthropic(process.env.ANTHROPIC_MODEL!),
       messages,
       system: AGENT_SYSTEM_PROMPT,
       tools: { temperature: vercelTemperatureTool },

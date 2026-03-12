@@ -9,7 +9,7 @@ import { AGENT_SYSTEM_PROMPT } from './config/main'
 
 async function main() {
   const ai = new ChatAnthropic({
-    model: 'claude-3-5-sonnet-latest',
+    model: process.env.ANTHROPIC_MODEL,
     temperature: 0,
   })
 

@@ -1,6 +1,6 @@
 import 'dotenv/config'
 import { genkit, MessageData } from 'genkit'
-import { anthropic, claude35Sonnet } from 'genkitx-anthropic'
+import { anthropic, claude45Sonnet } from 'genkitx-anthropic'
 import * as readline from 'node:readline/promises'
 import { AGENT_NAME, AGENT_SYSTEM_PROMPT } from './config/main'
 import { createGenkitTemperatureTool } from './tools/genkitTemperatureTool'
@@ -17,7 +17,7 @@ async function main() {
 
   const ai = genkit({
     plugins: [anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })],
-    model: claude35Sonnet,
+    model: claude45Sonnet,
   })
 
   const genkitTemperatureTool = createGenkitTemperatureTool(ai)
@@ -35,6 +35,7 @@ async function main() {
       system: AGENT_SYSTEM_PROMPT,
       maxTurns: 2,
       config: {
+        version: process.env.ANTHROPIC_MODEL,
         temperature: 0,
       },
     })
