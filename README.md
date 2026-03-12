@@ -1,6 +1,6 @@
 # AI SDK Comparison
 
-Code examples implemented with different AI frameworks, such as [Vercel AI SDK](https://ai-sdk.dev/), [Firebase Genkit](https://firebase.google.com/products/genkit) and [Langchain.js](https://js.langchain.com).
+Code examples implemented with different AI frameworks, such as [Vercel AI SDK](https://ai-sdk.dev/), [Mastra](https://mastra.ai), [Langchain.js](https://js.langchain.com), and [Firebase Genkit](https://firebase.google.com/products/genkit).
 
 The main aim is to compare the frameworks and decide which one to choose for next projects.
 
@@ -34,6 +34,8 @@ pnpm vercel:simple
 pnpm genkit:simple
 # src/langchain.simple.ts
 pnpm langchain:simple
+# src/mastra.simple.ts
+pnpm mastra:simple
 ```
 
 ### Simple non-interactive example with a Temperature tool plugged:
@@ -45,6 +47,8 @@ pnpm vercel:tool
 pnpm genkit:tool
 # src/langchain.tool.ts
 pnpm langchain:tool
+# src/mastra.tool.ts
+pnpm mastra:tool
 ```
 
 ### Interactive Chat example with a Temperature tool plugged:
@@ -56,6 +60,8 @@ pnpm vercel:chat
 pnpm genkit:chat
 # src/langchain.chat.ts
 pnpm langchain:chat
+# src/mastra.chat.ts
+pnpm mastra:chat
 ```
 
 Ask something like this to run the temperature tool:
