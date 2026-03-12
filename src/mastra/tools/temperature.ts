@@ -1,20 +1,24 @@
-import { tool } from 'ai'
+import { createTool } from '@mastra/core/tools'
 import { z } from 'zod'
 
-export const vercelTemperatureTool = tool({
+export const temperatureTool = createTool({
+  id: 'temperature',
   description: 'Gets current temperature in the given city',
   inputSchema: z.object({
     city: z.string().describe('The city to get the current temperature for'),
   }),
-  execute: async ({ city }) => {
+  outputSchema: z.object({
+    temperature: z.string(),
+  }),
+  execute: async ({ city: _city }) => {
     try {
       const min = -10
       const max = 40
       const temperature = (Math.random() * (max - min) + min).toFixed(0)
 
-      return `${temperature}°C`
+      return { temperature: `${temperature}°C` }
     } catch (error: any) {
-      return { error: error.message }
+      return { temperature: error.message }
     }
   },
 })

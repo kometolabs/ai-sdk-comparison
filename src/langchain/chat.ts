@@ -1,10 +1,10 @@
 import { ChatAnthropic } from '@langchain/anthropic'
-import { AIMessage, BaseMessage, HumanMessage } from '@langchain/core/messages'
-import { createReactAgent } from '@langchain/langgraph/prebuilt'
+import { AIMessage, BaseMessage, HumanMessage, ToolMessage } from '@langchain/core/messages'
+import { createAgent } from 'langchain'
 import 'dotenv/config'
 import * as readline from 'node:readline/promises'
-import { AGENT_NAME, AGENT_SYSTEM_PROMPT } from './config/main'
-import { langchainTemperatureTool } from './tools/langchainTemperatureTool'
+import { AGENT_NAME, AGENT_SYSTEM_PROMPT } from '../config/main'
+import { temperatureTool } from './tools/temperature'
 
 const terminal = readline.createInterface({
   input: process.stdin,
@@ -22,10 +22,10 @@ async function main() {
     temperature: 0,
   })
 
-  const agent = createReactAgent({
-    llm: ai,
-    tools: [langchainTemperatureTool],
-    prompt: AGENT_SYSTEM_PROMPT,
+  const agent = createAgent({
+    model: ai,
+    tools: [temperatureTool],
+    systemPrompt: AGENT_SYSTEM_PROMPT,
   })
 
   const messages: BaseMessage[] = []
@@ -43,7 +43,7 @@ async function main() {
 
     for (let i = messages.length; i < result.messages.length; i++) {
       if (
-        result.messages[i].getType() === 'tool' ||
+        ToolMessage.isInstance(result.messages[i]) ||
         typeof result.messages[i].content !== 'string'
       ) {
         continue

@@ -1,7 +1,7 @@
 import { anthropic } from '@ai-sdk/anthropic'
 import { generateText, stepCountIs } from 'ai'
 import 'dotenv/config'
-import { AGENT_SYSTEM_PROMPT } from './config/main'
+import { AGENT_SYSTEM_PROMPT } from '../config/main'
 
 async function main() {
   const result = await generateText({

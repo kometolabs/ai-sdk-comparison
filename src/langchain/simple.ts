@@ -5,7 +5,7 @@ import {
   SystemMessage,
 } from '@langchain/core/messages'
 import 'dotenv/config'
-import { AGENT_SYSTEM_PROMPT } from './config/main'
+import { AGENT_SYSTEM_PROMPT } from '../config/main'
 
 async function main() {
   const ai = new ChatAnthropic({

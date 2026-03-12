@@ -1,9 +1,9 @@
 import { ChatAnthropic } from '@langchain/anthropic'
-import { BaseMessage, HumanMessage } from '@langchain/core/messages'
-import { createReactAgent } from '@langchain/langgraph/prebuilt'
+import { BaseMessage, HumanMessage, ToolMessage } from '@langchain/core/messages'
+import { createAgent } from 'langchain'
 import 'dotenv/config'
-import { AGENT_SYSTEM_PROMPT } from './config/main'
-import { langchainTemperatureTool } from './tools/langchainTemperatureTool'
+import { AGENT_SYSTEM_PROMPT } from '../config/main'
+import { temperatureTool } from './tools/temperature'
 
 async function main() {
   const ai = new ChatAnthropic({
@@ -11,10 +11,10 @@ async function main() {
     temperature: 0,
   })
 
-  const agent = createReactAgent({
-    llm: ai,
-    tools: [langchainTemperatureTool],
-    prompt: AGENT_SYSTEM_PROMPT,
+  const agent = createAgent({
+    model: ai,
+    tools: [temperatureTool],
+    systemPrompt: AGENT_SYSTEM_PROMPT,
   })
 
   const messages: BaseMessage[] = [
@@ -27,7 +27,7 @@ async function main() {
 
   for (let i = messages.length; i < result.messages.length; i++) {
     if (
-      result.messages[i].getType() === 'tool' ||
+      ToolMessage.isInstance(result.messages[i]) ||
       typeof result.messages[i].content !== 'string'
     ) {
       continue

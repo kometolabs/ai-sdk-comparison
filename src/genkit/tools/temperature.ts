@@ -1,6 +1,6 @@
 import { Genkit, z } from 'genkit'
 
-export const createGenkitTemperatureTool = (ai: Genkit) => {
+export const createTemperatureTool = (ai: Genkit) => {
   return ai.defineTool(
     {
       name: 'temperature',
@@ -12,7 +12,7 @@ export const createGenkitTemperatureTool = (ai: Genkit) => {
       }),
       outputSchema: z.string(),
     },
-    async ({ city }) => {
+    async ({ city: _city }) => {
       try {
         const min = -10
         const max = 40

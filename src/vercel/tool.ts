@@ -1,15 +1,15 @@
 import { anthropic } from '@ai-sdk/anthropic'
 import { generateText, stepCountIs } from 'ai'
 import 'dotenv/config'
-import { AGENT_SYSTEM_PROMPT } from './config/main'
-import { vercelTemperatureTool } from './tools/vercelTemperatureTool'
+import { AGENT_SYSTEM_PROMPT } from '../config/main'
+import { temperatureTool } from './tools/temperature'
 
 async function main() {
   const result = await generateText({
     model: anthropic(process.env.ANTHROPIC_MODEL!),
     system: AGENT_SYSTEM_PROMPT,
     prompt: "What's the temperature in New York?",
-    tools: { temperature: vercelTemperatureTool },
+    tools: { temperature: temperatureTool },
     stopWhen: stepCountIs(2),
     temperature: 0,
   })

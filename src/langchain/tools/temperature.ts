@@ -1,8 +1,8 @@
 import { tool } from '@langchain/core/tools'
 import { z } from 'zod'
 
-export const langchainTemperatureTool = tool(
-  async ({ city }) => {
+export const temperatureTool = tool(
+  async ({ city: _city }) => {
     try {
       const min = -10
       const max = 40
