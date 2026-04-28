@@ -1,6 +1,6 @@
 # AI SDK Comparison
 
-Code examples implemented with different AI frameworks, such as [Vercel AI SDK](https://ai-sdk.dev/), [Mastra](https://mastra.ai), [Langchain.js](https://js.langchain.com), and [Firebase Genkit](https://firebase.google.com/products/genkit).
+Code examples implemented with different AI frameworks, such as [Vercel AI SDK](https://ai-sdk.dev/), [Mastra](https://mastra.ai), [Langchain.js](https://js.langchain.com), and [Genkit](https://genkit.dev).
 
 The main aim is to compare the frameworks and decide which one to choose for next projects.
 
