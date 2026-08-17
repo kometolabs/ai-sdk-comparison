@@ -1,14 +1,14 @@
 import { anthropic } from '@ai-sdk/anthropic'
-import { generateText, stepCountIs } from 'ai'
+import { generateText, isStepCount } from 'ai'
 import 'dotenv/config'
 import { AGENT_SYSTEM_PROMPT } from '../config/main'
 
 async function main() {
   const result = await generateText({
     model: anthropic(process.env.ANTHROPIC_MODEL!),
-    system: AGENT_SYSTEM_PROMPT,
+    instructions: AGENT_SYSTEM_PROMPT,
     prompt: "What's your name?",
-    stopWhen: stepCountIs(1),
+    stopWhen: isStepCount(1),
     temperature: 0,
   })
 
