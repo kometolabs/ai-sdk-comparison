@@ -1,7 +1,20 @@
 {
-  "name": "ai-sdks-experiments",
+  "name": "ai-sdk-comparison",
   "version": "1.0.0",
-  "description": "AI SDKs experiments",
+  "description": "Code examples implemented with different AI frameworks (Vercel AI SDK, Mastra, Langchain.js, Firebase Genkit) to compare them and decide which one to choose for next projects",
+  "keywords": [
+    "ai",
+    "ai-sdk",
+    "ai-framework",
+    "comparison",
+    "vercel-ai-sdk",
+    "mastra",
+    "langchain",
+    "genkit",
+    "anthropic",
+    "claude",
+    "typescript"
+  ],
   "scripts": {
     "vercel:simple": "tsx src/vercel/simple.ts",
     "vercel:tool": "tsx src/vercel/tool.ts",
