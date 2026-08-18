@@ -1,5 +1,10 @@
 import { ChatAnthropic } from '@langchain/anthropic'
-import { AIMessage, BaseMessage, HumanMessage, ToolMessage } from '@langchain/core/messages'
+import {
+  AIMessage,
+  BaseMessage,
+  HumanMessage,
+  ToolMessage,
+} from '@langchain/core/messages'
 import { createAgent } from 'langchain'
 import 'dotenv/config'
 import * as readline from 'node:readline/promises'

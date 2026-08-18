@@ -1,5 +1,5 @@
 import { anthropic } from '@ai-sdk/anthropic'
-import { type ModelMessage, generateText, stepCountIs } from 'ai'
+import { type ModelMessage, generateText, isStepCount } from 'ai'
 import 'dotenv/config'
 import * as readline from 'node:readline/promises'
 import { AGENT_NAME, AGENT_SYSTEM_PROMPT } from '../config/main'
@@ -25,9 +25,9 @@ async function main() {
     const result = await generateText({
       model: anthropic(process.env.ANTHROPIC_MODEL!),
       messages,
-      system: AGENT_SYSTEM_PROMPT,
+      instructions: AGENT_SYSTEM_PROMPT,
       tools: { temperature: temperatureTool },
-      stopWhen: stepCountIs(2),
+      stopWhen: isStepCount(2),
       temperature: 0,
     })
 
