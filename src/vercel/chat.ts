@@ -28,7 +28,6 @@ async function main() {
       instructions: AGENT_SYSTEM_PROMPT,
       tools: { temperature: temperatureTool },
       stopWhen: isStepCount(2),
-      temperature: 0,
     })
 
     terminal.write(`${result.text}\n\n`)

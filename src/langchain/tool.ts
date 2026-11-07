@@ -12,7 +12,6 @@ import { temperatureTool } from './tools/temperature'
 async function main() {
   const ai = new ChatAnthropic({
     model: process.env.ANTHROPIC_MODEL,
-    temperature: 0,
   })
 
   const agent = createAgent({
@@ -30,14 +29,12 @@ async function main() {
   })
 
   for (let i = messages.length; i < result.messages.length; i++) {
-    if (
-      ToolMessage.isInstance(result.messages[i]) ||
-      typeof result.messages[i].content !== 'string'
-    ) {
+    const message = result.messages[i]
+    if (ToolMessage.isInstance(message) || !message.text) {
       continue
     }
 
-    console.log(result.messages[i].content)
+    console.log(message.text)
   }
 }
 

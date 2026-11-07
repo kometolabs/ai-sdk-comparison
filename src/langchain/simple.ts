@@ -10,7 +10,6 @@ import { AGENT_SYSTEM_PROMPT } from '../config/main'
 async function main() {
   const ai = new ChatAnthropic({
     model: process.env.ANTHROPIC_MODEL,
-    temperature: 0,
   })
 
   const messages: BaseMessage[] = [
@@ -20,7 +19,7 @@ async function main() {
 
   const response = await ai.invoke(messages)
 
-  console.log(response.content)
+  console.log(response.text)
 }
 
 main().catch((error) => {

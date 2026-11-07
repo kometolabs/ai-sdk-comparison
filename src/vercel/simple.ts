@@ -9,7 +9,6 @@ async function main() {
     instructions: AGENT_SYSTEM_PROMPT,
     prompt: "What's your name?",
     stopWhen: isStepCount(1),
-    temperature: 0,
   })
 
   console.log(result.text)

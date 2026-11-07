@@ -24,7 +24,6 @@ async function main() {
     onFailedAttempt: ({ error }) => {
       terminal.write(`\nError: ${error?.message}\n`)
     },
-    temperature: 0,
   })
 
   const agent = createAgent({
@@ -47,21 +46,14 @@ async function main() {
     })
 
     for (let i = messages.length; i < result.messages.length; i++) {
-      if (
-        ToolMessage.isInstance(result.messages[i]) ||
-        typeof result.messages[i].content !== 'string'
-      ) {
+      const message = result.messages[i]
+      if (ToolMessage.isInstance(message) || !message.text) {
         continue
       }
 
-      const content = result.messages[i].content
-      if (!content) {
-        continue
-      }
+      messages.push(new AIMessage(message.text))
 
-      messages.push(new AIMessage(content.toString()))
-
-      terminal.write(`${content.toString()}\n\n`)
+      terminal.write(`${message.text}\n\n`)
     }
   }
 }

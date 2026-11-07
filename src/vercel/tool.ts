@@ -11,7 +11,6 @@ async function main() {
     prompt: "What's the temperature in New York?",
     tools: { temperature: temperatureTool },
     stopWhen: isStepCount(2),
-    temperature: 0,
   })
 
   console.log(result.text)

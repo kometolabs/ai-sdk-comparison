@@ -15,7 +15,6 @@ async function main() {
     maxTurns: 1,
     config: {
       version: process.env.ANTHROPIC_MODEL,
-      temperature: 0,
     },
   })
 
