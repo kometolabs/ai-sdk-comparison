@@ -1,13 +1,13 @@
 import 'dotenv/config'
 import { genkit } from 'genkit'
-import { anthropic, claude45Sonnet } from 'genkitx-anthropic'
+import { anthropic } from '@genkit-ai/anthropic'
 import { AGENT_SYSTEM_PROMPT } from '../config/main'
 import { createTemperatureTool } from './tools/temperature'
 
 async function main() {
   const ai = genkit({
     plugins: [anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })],
-    model: claude45Sonnet,
+    model: anthropic.model(process.env.ANTHROPIC_MODEL!),
   })
 
   const temperatureTool = createTemperatureTool(ai)
@@ -17,9 +17,6 @@ async function main() {
     system: AGENT_SYSTEM_PROMPT,
     prompt: "What's the temperature in New York?",
     maxTurns: 2,
-    config: {
-      version: process.env.ANTHROPIC_MODEL,
-    },
   })
 
   console.log(result.text)

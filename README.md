@@ -6,7 +6,14 @@ Code examples implemented with different AI frameworks, such as [Vercel AI SDK](
 
 The main aim is to compare the frameworks and decide which one to choose for next projects.
 
-All of the examples use the same model (Anthropic Claude Sonnet 4.6 by default, configurable through the `ANTHROPIC_MODEL` env var) for cleaner comparison.
+All of the examples use the same model (Anthropic Claude Sonnet 5.5 by default, configurable through the `ANTHROPIC_MODEL` env var) for cleaner comparison.
+
+Packages used per framework:
+
+- Vercel AI SDK: `ai` + `@ai-sdk/anthropic`
+- Mastra: `@mastra/core` (built-in model routing, no provider package)
+- Langchain.js: `langchain` + `@langchain/anthropic`
+- Genkit: `genkit` + the official `@genkit-ai/anthropic` plugin
 
 Check out [@kkomelin](https://github.com/kkomelin)'s [companion post on his blog](https://komelin.com/blog/ai-framework-comparison).
 
