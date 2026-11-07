@@ -32,7 +32,7 @@
     "typecheck": "tsc --noEmit"
   },
   "license": "MIT",
-  "packageManager": "pnpm@11.22.0",
+  "packageManager": "pnpm@12.18.0",
   "dependencies": {
     "@ai-sdk/anthropic": "^4.0.97",
     "@genkit-ai/anthropic": "^0.7.0",
